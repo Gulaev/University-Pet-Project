@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Students List</title>
+<!--  <link rel="stylesheet" href="https://maxdn.boobootstrap.com">-->
+  <link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css"
+        rel="stylesheet">
+
+
+</head>
+<body>
+<table class="table table-dark">
+<thead>
+<tr>
+  <th scope="col">First</th>
+  <th scope="col">Last</th>
+  <th scope="col">Group ID</th>
+</tr>
+</thead>
+<tbody>
+<tr th:each="student : ${students}">
+  <td th:href="@{/student/{id}(id=${student.getStudentId()})}" th:text="${student.getFirstName()}">
+  <td th:text="${student.getLastName()}">
+  <td th:text="${student.getGroupId()}">
+</tbody>
+</table>
+<!--<div th:each="student : ${students}">-->
+<!--  <a th:href="@{/student/{id}(id=${student.getStudentId()})}"-->
+<!--     th:text="${student.getFirstName() + ' ' + student.getLastName()}">user</a>-->
+<!--  <p th:text="${'Group ID  - ' + student.getGroupId()}">VALUE</p>-->
+
+<!--</div-->
+
+<!--    ><button>-->
+<!--  <a th:href="@{/student/{id}/edit(id=${student.getStudentId()})}">Edit</a>-->
+<!--</button>-->
+
+</body>
+</html>
+
+

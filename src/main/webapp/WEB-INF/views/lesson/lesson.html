@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Lesson</title>
+</head>
+<body>
+<h1>Lesson</h1>
+  <p th:text="${'Lesson '+lesson.getLessonName()}">VALUE</p>
+  <p th:text="${'Audience '+lesson.getAudienceId()}">VAlUE</p>
+  <p th:text="${'Lesson Start ' + lesson.getLessonStart()}">VALUE</p>
+  <p th:text="${'Lesson End ' + lesson.getLessonEnd()}">VALUE</p>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>All Lesson</title>
+</head>
+<body>
+<div th:each="lesson : ${lessons}">
+  <a th:href="@{/lesson/{id}(id=${lesson.getLessonId()})}"
+     th:text="${lesson.getLessonName()}">user</a>
+  <p th:text="${'Audience Number - ' + lessonService.geAudienceNumberById(lesson.getAudienceId())}">VALUE</p>
+  <p th:text="${'Lesson Start - '+lesson.getLessonStart()}">VALUE</p>
+  <p th:text="${'Lesson End - '+ lesson.getLessonEnd()}">VALUE</p>
+<!--  <p th:text="${'Lesson Start - '+#dates.format(lesson.getLessonStart())}">VALUE</p>-->
+<!--  <p th:text="${'Lesson End - '+ #dates.format(lesson.getLessonEnd())}">VALUE</p>-->
+</div>
+
+</body>
+</html>

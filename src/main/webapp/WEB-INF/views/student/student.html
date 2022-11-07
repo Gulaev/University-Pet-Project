@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+<head>
+    <meta charset="UTF-8">
+    <title>Students</title>
+</head>
+<body>
+<h1>Student</h1>
+<p th:text="${student.getFirstName() + ' ' + student.getLastName()}">VALUE</p>
+<p th:text="${'Group Id ' + student.getGroupId()}">VALUE</p>
+
+<button th:href="@{redirect:/student/all_students.html}">VALUE</button>
+
+<form th:method="DELETE" th:action="@{/student/{id}(id=${student.getStudentId()})}">
+    <input type="submit" value="Delete"/>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Audience</title>
+</head>
+<body>
+    <h1>Audience</h1>
+    <p th:text="${'Audience Number ' + audience.getAudienceNumber()}">VALUE</p>
+    <p th:text="${'Floor '+audience.getFloor()}">VALUE</p>
+    <p th:text="${'Number of Seats '+ audience.getNumberOfSeats()}">VALUE</p>
+</body>
+</html>
