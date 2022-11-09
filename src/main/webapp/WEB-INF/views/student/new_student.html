@@ -3,21 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <title>New Student</title>
+
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
 </head>
 <body>
+
 <form th:method="POST" th:action="@{/student}" th:object="${student}">
-  <!--<input type="hidden" name="_method" value="patch">-->
-  <label for="firstName">Enter first name: </label>
-  <input type="text" th:field="*{firstName}" id="firstName"/>
-  <label for="lastName">Enter last name: </label>
-  <input type="text" th:field="*{lastName}" id="lastName"/>
-  <br/>
-  <label for="groupId">Enter group id: </label>
-  <input type="text" th:field="*{groupId}" id="groupId"/>
-  <br/>
-  <input type="submit" value="Create!"/>
+  <div class="form-row">
+    <div class="col">
+      <input type="text" class="form-control" placeholder="First name" id="firstName">
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Last name" id="lastName">
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Group Id" id="groupId">
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Create!</button>
 </form>
 
+<!--<div class="container">-->
+<!--  &lt;!&ndash; Content here &ndash;&gt;-->
+
+<!--<form th:method="POST" th:action="@{/student}" th:object="${student}">-->
+<!--  &lt;!&ndash;<input type="hidden" name="_method" value="patch">&ndash;&gt;-->
+<!--  <label for="firstName">Enter first name: </label>-->
+<!--  <input type="text" th:field="*{firstName}" id="firstName"/>-->
+<!--  <label for="lastName">Enter last name: </label>-->
+<!--  <input type="text" th:field="*{lastName}" id="lastName"/>-->
+<!--  <br/>-->
+<!--  <label for="groupId">Enter group id: </label>-->
+<!--  <input type="text" th:field="*{groupId}" id="groupId"/>-->
+<!--  <br/>-->
+<!--  <input type="submit" value="Create!"/>-->
+<!--</form>-->
+<!--</div>-->
 
 
 </body>

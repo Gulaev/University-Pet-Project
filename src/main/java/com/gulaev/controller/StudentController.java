@@ -36,13 +36,16 @@ public class StudentController {
   }
   @GetMapping("/new")
   public String newStudent(Model model){
+    log.debug("addNewStudent model = {}", model);
     model.addAttribute("student", new Student());
     return "student/new_student";
   }
 
   @PostMapping()
   public String create(@ModelAttribute("student") Student student) {
+    log.debug("create student = {}",student);
     studentService.createNewStudent(student);
+    log.debug("created Student");
     return "redirect:/student";
   }
 

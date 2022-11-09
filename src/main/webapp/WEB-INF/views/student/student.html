@@ -50,6 +50,17 @@
     </div>
 </nav>
 <h1>Student</h1>
+
+<div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">Student</h5>
+        <p class="card-text" th:text="${student.getFirstName() + ' ' + student.getLastName()}">
+        <p class="card-text" th:text="${'Group Id ' + student.getGroupId()}">
+        <a th:href="@{/student/{id}(id=${student.getStudentId()})}" class="btn btn-primary">Edit</a>
+    </div>
+</div>
+
 <p th:text="${student.getFirstName() + ' ' + student.getLastName()}">VALUE</p>
 <p th:text="${'Group Id ' + student.getGroupId()}">VALUE</p>
 
@@ -57,6 +68,6 @@
 
 <form th:method="DELETE" th:action="@{/student/{id}(id=${student.getStudentId()})}">
     <input type="submit" value="Delete"/>
-
+</form>
 </body>
 </html>
