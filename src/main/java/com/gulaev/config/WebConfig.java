@@ -80,6 +80,7 @@ public class WebConfig implements WebMvcConfigurer {
     return resolver;
   }
 
+
   private ISpringTemplateEngine buildTemplateEngine(ITemplateResolver templateResolver) {
     SpringTemplateEngine engine = new SpringTemplateEngine();
     engine.setTemplateResolver(templateResolver);

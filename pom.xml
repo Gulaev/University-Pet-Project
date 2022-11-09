@@ -164,11 +164,12 @@
       <scope>compile</scope>
     </dependency>
 
+
     <!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
     <dependency>
       <groupId>org.webjars</groupId>
       <artifactId>bootstrap</artifactId>
-      <version>5.2.2</version>
+      <version>4.0.0-2</version>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/org.webjars/bootstrap-datepicker -->
@@ -182,10 +183,9 @@
     <dependency>
       <groupId>org.webjars.bower</groupId>
       <artifactId>jquery</artifactId>
-      <version>3.6.1</version>
+      <version>3.0.0</version>
     </dependency>
-
-  </dependencies>
+ </dependencies>
 
   <build>
 
