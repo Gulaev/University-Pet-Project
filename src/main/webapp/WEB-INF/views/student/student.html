@@ -14,60 +14,43 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">Home</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+<div th:replace="templates/fragments :: header">
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/student">List of Students <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/student/new">Add New Student</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    All List
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/student">All Student</a>
-                    <a class="dropdown-item" href="/lesson">All Lesson</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">All Teacher</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/lesson" tabindex="-1" aria-disabled="true">All Lesson</a>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </div>
-</nav>
+</div>
 <h1>Student</h1>
 
+<!--<div class="card" style="width: 18rem;">-->
+<!--    <img src="..." class="card-img-top" alt="...">-->
+<!--    <div class="card-body">-->
+<!--        <h5 class="card-title">Student</h5>-->
+<!--        <p class="card-text" th:text="${student.getFirstName() + ' ' + student.getLastName()}">-->
+<!--        <p class="card-text" th:text="${'Group Id ' + student.getGroupId()}">-->
+<!--        <a th:href="@{/student/{id}(id=${student.getStudentId()})}" class="btn btn-primary">Edit</a>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+
 <div class="card" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
     <div class="card-body">
         <h5 class="card-title">Student</h5>
-        <p class="card-text" th:text="${student.getFirstName() + ' ' + student.getLastName()}">
-        <p class="card-text" th:text="${'Group Id ' + student.getGroupId()}">
-        <a th:href="@{/student/{id}(id=${student.getStudentId()})}" class="btn btn-primary">Edit</a>
+        <h6 class="card-subtitle mb-2 text-muted" th:text="${student.getFirstName() + ' ' + student.getLastName()}"/>
+        <p class="card-text" th:text="${'Group Id ' + student.getGroupId()}"/>
+        <a th:href="@{/student/{id}/edit(id=${student.getStudentId()})}" class="card-link">Edit</a>
+        <a href="/student" class="card-link">Back</a>
     </div>
 </div>
 
-<p th:text="${student.getFirstName() + ' ' + student.getLastName()}">VALUE</p>
-<p th:text="${'Group Id ' + student.getGroupId()}">VALUE</p>
 
-<button th:href="@{redirect:/student/all_students.html}">VALUE</button>
 
-<form th:method="DELETE" th:action="@{/student/{id}(id=${student.getStudentId()})}">
-    <input type="submit" value="Delete"/>
-</form>
+
+<!--<p th:text="${student.getFirstName() + ' ' + student.getLastName()}">VALUE</p>-->
+<!--<p th:text="${'Group Id ' + student.getGroupId()}">VALUE</p>-->
+
+<!--<button th:href="@{redirect:/student/all_students.html}">VALUE</button>-->
+
+<!--<form th:method="DELETE" th:action="@{/student/{id}(id=${student.getStudentId()})}">-->
+<!--    <input type="submit" value="Delete"/>-->
+<!--</form>-->
 </body>
 </html>

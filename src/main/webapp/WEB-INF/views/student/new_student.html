@@ -11,38 +11,25 @@
 </head>
 <body>
 
+<div th:replace="templates/fragments :: header">
+
+</div>
+
 <form th:method="POST" th:action="@{/student}" th:object="${student}">
   <div class="form-row">
     <div class="col">
-      <input type="text" class="form-control" placeholder="First name" id="firstName">
+      <input type="text" class="form-control" th:field="*{firstName}" placeholder="First name" id="firstName"/>
     </div>
     <div class="col">
-      <input type="text" class="form-control" placeholder="Last name" id="lastName">
+      <input type="text" class="form-control" th:field="*{lastName}" placeholder="Last name" id="lastName"/>
     </div>
     <div class="col">
-      <input type="text" class="form-control" placeholder="Group Id" id="groupId">
+      <input type="text" class="form-control" th:field="*{groupId}" placeholder="Group Id" id="groupId"/>
     </div>
   </div>
+
   <button type="submit" class="btn btn-primary">Create!</button>
 </form>
-
-<!--<div class="container">-->
-<!--  &lt;!&ndash; Content here &ndash;&gt;-->
-
-<!--<form th:method="POST" th:action="@{/student}" th:object="${student}">-->
-<!--  &lt;!&ndash;<input type="hidden" name="_method" value="patch">&ndash;&gt;-->
-<!--  <label for="firstName">Enter first name: </label>-->
-<!--  <input type="text" th:field="*{firstName}" id="firstName"/>-->
-<!--  <label for="lastName">Enter last name: </label>-->
-<!--  <input type="text" th:field="*{lastName}" id="lastName"/>-->
-<!--  <br/>-->
-<!--  <label for="groupId">Enter group id: </label>-->
-<!--  <input type="text" th:field="*{groupId}" id="groupId"/>-->
-<!--  <br/>-->
-<!--  <input type="submit" value="Create!"/>-->
-<!--</form>-->
-<!--</div>-->
-
 
 </body>
 </html>
