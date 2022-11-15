@@ -21,13 +21,6 @@ public class LessonService {
   private SubjectDao subjectDao;
   private AudienceDao audienceDao;
 
-//  @Autowired
-//  public LessonService(LessonDao lessonDao, SubjectDao subjectDao, AudienceDao audienceDao) {
-//    this.lessonDao = lessonDao;
-//    this.audienceDao = audienceDao;
-//    this.subjectDao = subjectDao;
-//    log.trace("Initialization LessonService");
-//  }
 
   public Lesson getLessonById(int id) {
     log.debug("getLessonById id = {}", id);

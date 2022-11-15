@@ -21,15 +21,6 @@ public class GroupAndLessonService {
   private GroupDao groupDao;
   private LessonDao lessonDao;
 
-//  @Autowired
-//  public GroupAndLessonService(
-//      GroupAndLessonDao groupAndLessonDao, GroupDao groupDao, LessonDao lessonDao) {
-//    this.groupAndLessonDao = groupAndLessonDao;
-//    this.groupDao = groupDao;
-//    this.lessonDao = lessonDao;
-//    log.trace("Initialization GroupAndLessonService");
-//  }
-
   public List<Lesson> getAllLessonsByOneGroup(int groupId) {
     log.debug("getAllLessonsByOneGroup groupId = {}",groupId);
     List<Integer> lessonsIds = new ArrayList<>();

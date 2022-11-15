@@ -6,6 +6,7 @@ import com.gulaev.dao.TeacherDao;
 import com.gulaev.models.Lesson;
 import com.gulaev.models.Subject;
 import com.gulaev.models.Teacher;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,13 +23,7 @@ public class TeacherService {
   private SubjectDao subjectDao;
   private LessonDao lessonDao;
 
-//  @Autowired
-//  public TeacherService(TeacherDao teacherDao, SubjectDao subjectDao, LessonDao lessonDao) {
-//    this.teacherDao = teacherDao;
-//    this.subjectDao = subjectDao;
-//    this.lessonDao = lessonDao;
-//    log.trace("Initialization TeacherService");
-//  }
+
 
   public Teacher getTeacherById(int id) {
     log.debug("getTeacher id = {}", id);
@@ -62,7 +57,26 @@ public class TeacherService {
                           lessons.add(lesson);
                       });
             });
-    log.debug("returned lessons = {}", lessons);
+    log.debug("getTeacherLessonByTeacherId returned lessons = {}", lessons);
     return lessons;
   }
+
+  public List<Teacher> loadAll() {
+    log.debug("loadAll() ");
+    return teacherDao.loadAll();
+  }
+
+  public List<Lesson> getAllLessonForTeacherOneMonthFromTheCurrentTimeByStudentId(int id) {
+    log.debug("getAllLessonForTeacherOneMonthFromTheCurrentTimeByStudentId teacherId = {}", id);
+    Timestamp timeNow = new Timestamp(System.currentTimeMillis());
+    Timestamp timeAfterNowOneMonth = new Timestamp(System.currentTimeMillis());
+    timeAfterNowOneMonth.setMonth(timeNow.getMonth() + 1);
+    List<Lesson> lessonsForOneTeacherByMount = getTeacherLessonByTeacherId(id).stream()
+        .filter(l -> l.getLessonStart().after(timeNow))
+        .filter(lesson -> lesson.getLessonStart().before(timeAfterNowOneMonth))
+        .collect(Collectors.toList());
+    log.debug("getAllLessonForTeacherOneMonthFromTheCurrentTimeByStudentId returned lessons = {}", lessonsForOneTeacherByMount);
+    return lessonsForOneTeacherByMount;
+  }
 }
+

@@ -22,16 +22,6 @@ public class SpecialityService {
   private SpecialitiesAndTeachersDao specialitiesAndTeachersDao;
   private TeacherDao teacherDao;
 
-//  @Autowired
-//  public SpecialityService(
-//      SpecialityDao specialityDao,
-//      SpecialitiesAndTeachersDao specialitiesAndTeachersDao,
-//      TeacherDao teacherDao) {
-//    this.specialityDao = specialityDao;
-//    this.specialitiesAndTeachersDao = specialitiesAndTeachersDao;
-//    this.teacherDao = teacherDao;
-//    log.trace("Initialization SpecialityService");
-//  }
 
   public Speciality getSpecialityById(int id) {
     log.debug("getSpecialityById id = {}", id);

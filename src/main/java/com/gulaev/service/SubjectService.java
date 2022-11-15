@@ -15,13 +15,6 @@ public class SubjectService {
   private SubjectDao subjectDao;
   private SpecialityDao specialityDao;
 
-//  @Autowired
-//  public SubjectService(SubjectDao subjectDao, SpecialityDao specialityDao) {
-//    this.subjectDao = subjectDao;
-//    this.specialityDao = specialityDao;
-//    log.trace("Initialization SubjectService");
-//  }
-
   public Subject getSubjectById(int id) {
     log.debug("getSubjectById id = {}", id);
     Subject subject = subjectDao.getById(id);

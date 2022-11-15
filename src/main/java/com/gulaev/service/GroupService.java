@@ -13,12 +13,6 @@ public class GroupService {
 
   private final GroupDao groupDao;
 
-//  @Autowired
-//  public GroupService(GroupDao groupDao) {
-//    this.groupDao = groupDao;
-//    log.trace("Initialization GroupService");
-//  }
-
   public Group getGroupById(int id) {
     log.debug("getGroupById id = {}", id);
     Group byId = groupDao.getById(id);

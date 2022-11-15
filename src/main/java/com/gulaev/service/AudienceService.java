@@ -15,12 +15,6 @@ public class AudienceService {
 
   private final AudienceDao audienceDao;
 
-//  @Autowired
-//  public AudienceService(AudienceDao audienceDao) {
-//    log.trace("initialization AudienceService");
-//    this.audienceDao = audienceDao;
-//  }
-
   public Audience getByAudienceId(int id) {
         return audienceDao.getById(id);
   }
