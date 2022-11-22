@@ -185,7 +185,15 @@
       <artifactId>jquery</artifactId>
       <version>3.0.0</version>
     </dependency>
- </dependencies>
+
+    <!-- https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-core -->
+    <dependency>
+      <groupId>org.hibernate.orm</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>6.1.5.Final</version>
+    </dependency>
+
+  </dependencies>
 
   <build>
 

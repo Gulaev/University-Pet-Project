@@ -1,10 +1,17 @@
 package com.gulaev.config;
 
+import javax.naming.CompositeName;
+import javax.naming.InitialContext;
+import javax.naming.InvalidNameException;
+import javax.naming.Name;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jndi.JndiTemplate;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -86,4 +93,13 @@ public class WebConfig implements WebMvcConfigurer {
     engine.setTemplateResolver(templateResolver);
     return engine;
   }
+
+//  @Bean
+//  public UserDAO getUserDao() throws NamingException {
+//    JndiTemplate jndiTemplate = new JndiTemplate();
+//    DataSource dataSource
+//        = (DataSource) jndiTemplate.lookup("java:comp/env/jdbc/task10");
+//    return new UserDAOImpl(dataSource);
+//  }
+
 }

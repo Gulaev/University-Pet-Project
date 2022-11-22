@@ -1,5 +1,7 @@
 package com.gulaev.config;
 
+import javax.naming.CompositeName;
+import javax.naming.Name;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -8,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -20,20 +23,23 @@ import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 public class SpringConfig {
 
   private final ApplicationContext applicationContext;
+  private final Environment environment;
 
   @Autowired
-  public SpringConfig(ApplicationContext applicationContext) {
+  public SpringConfig(ApplicationContext applicationContext, Environment environment) {
     this.applicationContext = applicationContext;
+    this.environment = environment;
   }
+
 
   @Bean
   public DataSource dataSource() {
     DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
-    dataSource.setDriverClassName("org.postgresql.Driver");
-    dataSource.setUrl("jdbc:postgresql://localhost:5432/task10");
-    dataSource.setUsername("denisgulaev");
-    dataSource.setPassword("5262618z");
+    dataSource.setDriverClassName(environment.getProperty("driver"));
+    dataSource.setUrl(environment.getProperty("url"));
+    dataSource.setUsername(environment.getProperty("dbuser"));
+    dataSource.setPassword(environment.getProperty("dbpassword"));
 
     return dataSource;
   }
