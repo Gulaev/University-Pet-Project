@@ -1,13 +1,12 @@
-package com.gulaev.models;
+package com.gulaev.repository;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import jakarta.persistence.Table;
+import lombok.Data;
 
 @Entity
 @Table(name = "audiences")
@@ -36,9 +35,8 @@ public class Audience implements Model {
 
   public Audience() {}
 
-  public Audience(Integer audienceId, Integer audienceNumber, Integer floor, Integer numberOfSeats,
+  public Audience(Integer audienceNumber, Integer floor, Integer numberOfSeats,
       boolean interactiveWhiteboard, boolean isEmpty) {
-    this.audienceId = audienceId;
     this.audienceNumber = audienceNumber;
     this.floor = floor;
     this.numberOfSeats = numberOfSeats;

@@ -1,4 +1,4 @@
-package com.gulaev.models;
+package com.gulaev.repository;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,17 +25,23 @@ public class Subject implements Model {
     @Column(name = "subjects_description")
     private String subjectDescription;
 
-    @Column(name = "speciality_id")
-    private Integer specialityId;
+    @ManyToOne
+    @JoinColumn(name = "subject_teacher_id", referencedColumnName = "teacher_id")
+    private Teacher subjectTeacherId;
 
-    @Column(name = "subject_teacher_id")
-    private Integer subjectTeacherId;
+    @ManyToOne
+    @JoinColumn(name = "speciality_id", referencedColumnName = "speciality_id")
+    private Speciality specialityId;
 
-//    @ManyToOne
-//    @JoinColumn(name = "speciality_id", referencedColumnName = "speciality_id")
-//    private Speciality speciality;
-//
 
     public Subject() {
+    }
+
+    public Subject(String subjectName, String subjectDescription, Speciality specialityId,
+        Teacher subjectTeacherId) {
+        this.subjectName = subjectName;
+        this.subjectDescription = subjectDescription;
+        this.specialityId = specialityId;
+        this.subjectTeacherId = subjectTeacherId;
     }
 }
