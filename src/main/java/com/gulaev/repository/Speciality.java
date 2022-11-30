@@ -33,7 +33,7 @@ public class Speciality implements Model {
 
     @ManyToOne
     @JoinColumn(name = "audience_id", referencedColumnName = "audience_id")
-    private Audience audienceId;
+    private Audience audience;
 
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(name = "specialities_and_teachers",
@@ -45,9 +45,9 @@ public class Speciality implements Model {
     public Speciality(){
     }
 
-    public Speciality(String nameOfSpeciality, Integer course, Audience audienceId) {
+    public Speciality(String nameOfSpeciality, Integer course, Audience audience) {
         this.nameOfSpeciality = nameOfSpeciality;
         this.course = course;
-        this.audienceId = audienceId;
+        this.audience = audience;
     }
 }

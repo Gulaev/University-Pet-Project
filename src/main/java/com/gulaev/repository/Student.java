@@ -29,9 +29,6 @@ public class Student implements Model {
     @ManyToOne
     @JoinColumn(name = "group_id", referencedColumnName = "group_id")
     private Group group;
-//
-//    @Column(name = "group_id")
-//    private Integer groupId;
 
     public Student() {
     }

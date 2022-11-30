@@ -27,21 +27,21 @@ public class Subject implements Model {
 
     @ManyToOne
     @JoinColumn(name = "subject_teacher_id", referencedColumnName = "teacher_id")
-    private Teacher subjectTeacherId;
+    private Teacher teacher;
 
     @ManyToOne
     @JoinColumn(name = "speciality_id", referencedColumnName = "speciality_id")
-    private Speciality specialityId;
+    private Speciality speciality;
 
 
     public Subject() {
     }
 
-    public Subject(String subjectName, String subjectDescription, Speciality specialityId,
-        Teacher subjectTeacherId) {
+    public Subject(String subjectName, String subjectDescription, Speciality speciality,
+        Teacher teacher) {
         this.subjectName = subjectName;
         this.subjectDescription = subjectDescription;
-        this.specialityId = specialityId;
-        this.subjectTeacherId = subjectTeacherId;
+        this.speciality = speciality;
+        this.teacher = teacher;
     }
 }

@@ -26,6 +26,7 @@ public class Teacher implements Model {
     @Column(name = "last_name")
     private String lastName;
 
+
     public Teacher() {
     }
 }
