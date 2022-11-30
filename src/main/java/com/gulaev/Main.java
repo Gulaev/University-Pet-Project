@@ -11,6 +11,7 @@ import com.gulaev.repository.Student;
 import com.gulaev.repository.Subject;
 import com.gulaev.repository.Teacher;
 import com.gulaev.service.*;
+import java.util.HashSet;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.cfg.Configuration;
@@ -42,18 +43,18 @@ public class Main {
 
     SessionFactory sessionFactory = configuration.buildSessionFactory();
     Session session = sessionFactory.getCurrentSession();
-    try {
+
+    try(session) {
 
       session.beginTransaction();
-
-      //session.createQuery("FROM Lesson").getResultList().forEach(System.out::println);
+      Audience audience = new Audience(123, 3, 100, true, false);
+      Speciality speciality = new Speciality("Math", 4, audience);
+      Teacher teacher = new Teacher("John", "Doe", new HashSet<>(List.of(speciality)));
       session.createQuery("FROM Group").getResultList().forEach(System.out::println);
+
+//      session.createQuery()
+
     } catch (Exception e) {
-
-    } finally {
-      session.close();
-
     }
-
   }
 }

@@ -34,7 +34,7 @@ public class Group implements Model {
     @JoinTable(name = "group_and_lesson",
         joinColumns = {@JoinColumn(name = "group_id")},
         inverseJoinColumns = {@JoinColumn(name = "lesson_id")})
-    private Set<Lesson> lessons = new HashSet<>();
+    private Set<Lesson> lessons;
 
     public Group() {
     }

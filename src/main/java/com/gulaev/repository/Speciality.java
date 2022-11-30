@@ -10,6 +10,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
@@ -35,11 +36,14 @@ public class Speciality implements Model {
     @JoinColumn(name = "audience_id", referencedColumnName = "audience_id")
     private Audience audience;
 
+//    @OneToMany(mappedBy = "specialities")
+//    private Set<Audience> audiences;
+
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(name = "specialities_and_teachers",
         joinColumns = {@JoinColumn(name = "speciality_id")}
         ,inverseJoinColumns = {@JoinColumn(name = "teacher_id")})
-    private Set<Teacher> teachers = new HashSet<>();
+    private Set<Teacher> teachers;
 
 
     public Speciality(){

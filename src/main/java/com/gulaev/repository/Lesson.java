@@ -41,7 +41,7 @@ public class Lesson implements Model {
     private Subject subjectId;
 
     @ManyToMany(mappedBy = "lessons")
-    private Set<Group> groups = new HashSet<>();
+    private Set<Group> groups;
 
     public Lesson() {
     }
