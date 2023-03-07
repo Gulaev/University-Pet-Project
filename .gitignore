@@ -1,4 +1,6 @@
 .idea
 target
 lib
-WEB-I
+out
+.DS_Store
+#webapp/WEB-INF/

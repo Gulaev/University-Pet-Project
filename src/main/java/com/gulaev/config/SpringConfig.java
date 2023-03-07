@@ -1,8 +1,8 @@
 package com.gulaev.config;
 
-import javax.naming.CompositeName;
-import javax.naming.Name;
+import java.util.Properties;
 import javax.sql.DataSource;
+import org.hibernate.mapping.Property;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -16,19 +16,25 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.init.DataSourceInitializer;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @ComponentScan("com.gulaev")
 @PropertySource("classpath:SQL/database.properties")
+@PropertySource("classpath:hibernate.properties")
+@EnableTransactionManagement
 public class SpringConfig {
 
   private final ApplicationContext applicationContext;
-  private final Environment environment;
+  private final Environment env;
 
   @Autowired
-  public SpringConfig(ApplicationContext applicationContext, Environment environment) {
+  public SpringConfig(ApplicationContext applicationContext, Environment env) {
     this.applicationContext = applicationContext;
-    this.environment = environment;
+    this.env = env;
   }
 
 
@@ -36,10 +42,10 @@ public class SpringConfig {
   public DataSource dataSource() {
     DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
-    dataSource.setDriverClassName(environment.getProperty("driver"));
-    dataSource.setUrl(environment.getProperty("url"));
-    dataSource.setUsername(environment.getProperty("dbuser"));
-    dataSource.setPassword(environment.getProperty("dbpassword"));
+    dataSource.setDriverClassName(env.getProperty("driver"));
+    dataSource.setUrl(env.getProperty("url"));
+    dataSource.setUsername(env.getProperty("dbuser"));
+    dataSource.setPassword(env.getProperty("dbpassword"));
 
     return dataSource;
   }
@@ -58,5 +64,31 @@ public class SpringConfig {
     dataSourceInitializer.setDataSource(dataSource);
     dataSourceInitializer.setDatabasePopulator(resourceDatabasePopulator);
     return dataSourceInitializer;
+  }
+
+  public Properties hibernateProperties() {
+    Properties properties = new Properties();
+    properties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
+    properties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
+
+    return properties;
+  }
+
+  @Bean
+  public LocalSessionFactoryBean sessionFactory() {
+    LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
+    sessionFactory.setDataSource(dataSource());
+    sessionFactory.setPackagesToScan("com.gulaev");
+    sessionFactory.setHibernateProperties(hibernateProperties());
+
+    return sessionFactory;
+  }
+
+  @Bean
+  public PlatformTransactionManager hibernateTransactionManager() {
+    HibernateTransactionManager transactionManager = new HibernateTransactionManager();
+    transactionManager.setSessionFactory(sessionFactory().getObject());
+
+    return transactionManager;
   }
 }

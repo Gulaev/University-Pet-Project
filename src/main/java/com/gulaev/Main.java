@@ -13,10 +13,17 @@ import com.gulaev.repository.Teacher;
 import com.gulaev.service.*;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.boot.Metadata;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.SessionFactory;
 import org.hibernate.Session;
+import org.hibernate.service.ServiceRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,14 +54,20 @@ public class Main {
     try(session) {
 
       session.beginTransaction();
-      Audience audience = new Audience(123, 3, 100, true, false);
-      Speciality speciality = new Speciality("Math", 4, audience);
-      Teacher teacher = new Teacher("John", "Doe", new HashSet<>(List.of(speciality)));
+//      Audience audience = new Audience(123, 3, 100, true, false);
+//      Speciality speciality = new Speciality("Math", 4, audience);
+//      Teacher teacher = new Teacher("John", "Doe", new HashSet<>(List.of(speciality)));
+//      session.createQuery("FROM Group").getResultList().forEach(System.out::println);
+//      List<Group> groups  = (List<Group>) session.createQuery("FROM Group")
+//          .getResultList().stream().collect(Collectors.toList());
+
+//      groups.stream().flatMap(x-> x.getStudents().stream()).map(x -> x.getStudentId() ).forEach(System.out::println);
+
       session.createQuery("FROM Group").getResultList().forEach(System.out::println);
 
-//      session.createQuery()
 
     } catch (Exception e) {
+
     }
   }
 }

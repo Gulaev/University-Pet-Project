@@ -3,6 +3,7 @@ package com.gulaev.repository;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -15,6 +16,7 @@ import jakarta.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 import lombok.Data;
+import org.hibernate.annotations.Cascade;
 
 @Entity
 @Data
@@ -32,26 +34,33 @@ public class Speciality implements Model {
     @Column(name = "course")
     private Integer course;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "audience_id", referencedColumnName = "audience_id")
     private Audience audience;
 
-//    @OneToMany(mappedBy = "specialities")
-//    private Set<Audience> audiences;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @JoinTable(name = "specialities_and_teachers",
         joinColumns = {@JoinColumn(name = "speciality_id")}
         ,inverseJoinColumns = {@JoinColumn(name = "teacher_id")})
     private Set<Teacher> teachers;
 
+//    OneToMany
+    @OneToMany(mappedBy = "speciality", fetch = FetchType.LAZY,
+        targetEntity = Subject.class)
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    private Set<Subject> subjects;
 
     public Speciality(){
     }
 
-    public Speciality(String nameOfSpeciality, Integer course, Audience audience) {
+    public Speciality(String nameOfSpeciality, Integer course, Audience audience,
+        Set<Teacher> teachers,
+        Set<Subject> subjects) {
         this.nameOfSpeciality = nameOfSpeciality;
         this.course = course;
         this.audience = audience;
+        this.teachers = teachers;
+        this.subjects = subjects;
     }
 }

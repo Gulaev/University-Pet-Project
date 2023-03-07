@@ -8,7 +8,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 
 
 @Configuration
-public class WebApp extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class  WebApp extends AbstractAnnotationConfigDispatcherServletInitializer {
 
   @Override
   protected Class<?>[] getRootConfigClasses() {

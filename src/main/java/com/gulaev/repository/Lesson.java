@@ -1,5 +1,6 @@
 package com.gulaev.repository;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,6 +14,8 @@ import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 import lombok.Data;
+import org.hibernate.annotations.Cascade;
+
 @Entity
 @Data
 @Table(name = "lessons")
@@ -41,6 +44,7 @@ public class Lesson implements Model {
     private Subject subjectId;
 
     @ManyToMany(mappedBy = "lessons")
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private Set<Group> groups;
 
     public Lesson() {

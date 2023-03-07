@@ -1,13 +1,18 @@
 package com.gulaev.repository;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.Set;
 import lombok.Data;
 import lombok.Getter;
+import org.hibernate.annotations.Cascade;
 
 @Entity
 @Table(name = "audiences")
@@ -34,14 +39,26 @@ public class Audience implements Model {
   @Column(name = "is_empty")
   private boolean isEmpty;
 
+// ManyToOne
+  @OneToMany(mappedBy = "audienceId", fetch = FetchType.LAZY)
+  @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+  private Set<Lesson> lessons;
+
+  @OneToMany(mappedBy = "audience", fetch = FetchType.LAZY)
+  @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+  private Set<Speciality> specialities;
+
   public Audience() {}
 
   public Audience(Integer audienceNumber, Integer floor, Integer numberOfSeats,
-      boolean interactiveWhiteboard, boolean isEmpty) {
+      boolean interactiveWhiteboard, boolean isEmpty, Set<Lesson> lessons,
+      Set<Speciality> specialities) {
     this.audienceNumber = audienceNumber;
     this.floor = floor;
     this.numberOfSeats = numberOfSeats;
     this.interactiveWhiteboard = interactiveWhiteboard;
     this.isEmpty = isEmpty;
+    this.lessons = lessons;
+    this.specialities = specialities;
   }
 }
